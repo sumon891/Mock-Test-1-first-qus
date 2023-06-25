@@ -1,0 +1,47 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MoveZeroes {
+    public static void moveZeroes(int[] nums) {
+        int nonZeroIndex = 0;
+        int currentIndex = 0;
+
+        while (currentIndex < nums.length) {
+            if (nums[currentIndex] != 0) {
+                // Swap non-zero element with the element at nonZeroIndex
+                int temp = nums[currentIndex];
+                nums[currentIndex] = nums[nonZeroIndex];
+                nums[nonZeroIndex] = temp;
+
+                nonZeroIndex++;
+            }
+
+            currentIndex++;
+        }
+
+        // Set all remaining elements after nonZeroIndex to 0
+        for (int i = nonZeroIndex; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the length of the array: ");
+        int length = scanner.nextInt();
+
+        int[] nums = new int[length];
+
+        System.out.println("Enter the elements of the array, Press Enter after one element enter:");
+        for (int i = 0; i < length; i++) {
+            nums[i] = scanner.nextInt();
+        }
+
+        moveZeroes(nums);
+
+        System.out.println("Output: " + Arrays.toString(nums));
+
+        scanner.close();
+    }
+}
